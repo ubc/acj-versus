@@ -568,6 +568,8 @@ def peer_feedback_report(course, assignments, group):
 
 
 def strip_html(text):
+    if not text:
+        return ''
     text = re.sub('<[^>]+>', '', text)
     text = text.replace('&nbsp;', ' ')
     text = text.replace('&amp;', '&')
@@ -576,6 +578,7 @@ def strip_html(text):
     text = text.replace('&quot;', '"')
     text = text.replace('&#39;', '\'')
     return text
+
 
 def escape_leading_symbols_for_excel(text):
     result = text
@@ -587,6 +590,7 @@ def escape_leading_symbols_for_excel(text):
     if text[0] in ['-', '+', '=']:
         result = '\t' + text
     return result
+
 
 def generate_hyperlink_for_excel(url):
     if not url:
